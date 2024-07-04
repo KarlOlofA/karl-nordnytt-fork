@@ -12,7 +12,7 @@ export function LoadMoreStories(initStories: StoryProps){
     let [fetchTopStories, setFetchTopStories] = useState(true);
     let [stories, setStories] = useState<Story[]>(initStories.stories);
     let [pagesLoaded = 0, setPagesLoaded] = useState(0);
-    let [hasMoreStories, setHasMoreStories] = useState(initStories.hasMoreStories);
+    let [hasMoreStories, setHasMoreStories] = useState(initStories.hasMore);
 
     const {ref, inView} = useInView();
 
@@ -58,7 +58,7 @@ export function LoadMoreStories(initStories: StoryProps){
                 <button onClick={filterClick}>Current Filter: {filterText}</button>
             </div>
 
-            <Stories stories={stories} hasMoreStories={hasMoreStories}/>
+            <Stories stories={stories} hasMore={hasMoreStories}/>
 
             {hasMoreStories && (
                 <div

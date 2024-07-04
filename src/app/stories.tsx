@@ -5,10 +5,10 @@ import Link from "next/link";
 
 export interface StoryProps {
     stories: Story[] | [],
-    hasMoreStories: boolean
+    hasMore: boolean
 }
 
-export function Stories({stories, hasMoreStories}: StoryProps) {
+export function Stories({stories, hasMore}: StoryProps) {
     return (
         <>
             {stories?.map((story, index) => {
