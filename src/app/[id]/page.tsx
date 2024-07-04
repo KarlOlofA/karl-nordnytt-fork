@@ -1,9 +1,10 @@
-import { getComment, getStory } from "@/services/hn";
+import Keybindings from "@/components/keybinding";
+import { getComment, getStory, getTopStories } from "@/services/hn";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function Home({ params }:{ params: { id:number }}) {
-  const story = await getStory(params.id);
+  const [story, stories] = await Promise.all([getStory(params.id), getTopStories(100)]);
 
   if (!story)
     return notFound();
@@ -13,6 +14,7 @@ export default async function Home({ params }:{ params: { id:number }}) {
 
   return (
     <main>
+      <Keybindings stories={stories.map(s => s.id)} story={story.id} />
       <div className="leading-none mb-10">
         <h1 className="block font-bold visited:text-slate-500 text-2xl">{story.title}</h1>
         <div className="text-xs text-slate-700">{url?.host ? `${url?.host} - ` : ''} <Link href={`/${story.id}`}>{story.score} poäng</Link> - <Link href={`/${story.id}`}>{story.descendants || 'Inga'} kommentarer</Link> - {Math.floor(Date.now()/1000 - story.time)} sekunder sedan</div>
