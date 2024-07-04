@@ -10,7 +10,7 @@ import {fetchStories} from "@/app/fetch-stories";
 export function LoadMoreStories(initStories: StoryProps){
     let [filterText, setFilterText] = useState("Top Stories");
     let [fetchTopStories, setFetchTopStories] = useState(true);
-    let [stories, setStories] = useState<Story[]>(initStories.stories);
+    let [storiesToShow, setStories] = useState<Story[]>(initStories.stories);
     let [pagesLoaded = 0, setPagesLoaded] = useState(0);
     let [hasMoreStories, setHasMoreStories] = useState(initStories.hasMore);
 
@@ -58,7 +58,7 @@ export function LoadMoreStories(initStories: StoryProps){
                 <button onClick={filterClick}>Current Filter: {filterText}</button>
             </div>
 
-            <Stories stories={stories} hasMore={hasMoreStories}/>
+            <Stories stories={storiesToShow} hasMore={hasMoreStories}/>
 
             {hasMoreStories && (
                 <div
