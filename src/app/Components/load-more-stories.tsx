@@ -3,11 +3,11 @@
 import React, {useEffect, useState} from "react";
 import {Story} from "@/types";
 import {useInView} from "react-intersection-observer";
-import {Spinner} from "@/app/spinner";
-import {Stories, StoryProps} from "@/app/stories";
-import {fetchStories} from "@/app/fetch-stories";
+import {Spinner} from "@/app/Components/spinner";
+import {Stories, StoryProps} from "@/app/Components/stories";
+import {fetchStories} from "@/services/hn";
 
-export function LoadMoreStories(initStories: StoryProps){
+export function LoadMoreStories(initStories: StoryProps) {
     let [filterText, setFilterText] = useState("Top Stories");
     let [fetchTopStories, setFetchTopStories] = useState(true);
     let [storiesToShow, setStories] = useState<Story[]>(initStories.stories);
