@@ -59,7 +59,7 @@ export async function fetchStories(fetchData: fetchInterface){
   const start = fetchData.page*perPage;
   const end = start + perPage;
   const storiesToFetch = stories.slice(start, end);
-  const hasMoreStories = storiesToFetch.length > 0;
+  const hasMoreStories = storiesToFetch.length == perPage;
 
   const fetchedStories= await Promise.all(storiesToFetch.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
     next: {
